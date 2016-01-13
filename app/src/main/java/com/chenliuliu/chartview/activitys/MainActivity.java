@@ -98,9 +98,8 @@ public class MainActivity extends Activity {
         mCharterLine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = new Toast(MainActivity.this);
+                Toast toast = Toast.makeText(getApplicationContext(), R.string.string_author, Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.setText("我是陈柳柳");
                 toast.show();
             }
         });
