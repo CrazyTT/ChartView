@@ -7,7 +7,7 @@
 # 崇尚开源，崇尚分享，欢迎各路大牛前来
 
 
-![](https://github.com/CrazyTT/ListViewRefreshToLoadMore/blob/master/app/pic/23.gif?raw=true)
+![](https://github.com/CrazyTT/ChartView/blob/master/pic/44.gif?raw=true)
 
 
 
