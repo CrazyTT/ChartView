@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorTitle">#63AE0A</color>
+
+    <color name="colorbackground">#E0E1E2</color>
+    <color name="holo_red_dark">#ffcc0000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="blue">#33b5e5</color>
+    <color name="darkblue">#0099cc</color>
+    <color name="red">#ff4444</color>
+    <color name="transparent">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="ddcl">#338EE9</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="lightblue500">#03a9f4</color>
+    <color name="lightblue400">#29b6f6</color>
+    <color name="lightblue300">#4fc3f7</color>
+    <color name="default_lineColor">#0099cc</color>
+    <color name="default_chartBackgroundColor">#ffffff</color>
+    <color name="default_chartFillColor">#800099cc</color>
+    <color name="default_indicatorColor">#0099cc</color>
+
+    <color name="default_barColor">#0099cc</color>
+    <color name="default_barBackgroundColor">#190099cc</color>
+    <color name="default_labelColor">#000000</color>
+</resources>
