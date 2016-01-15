@@ -43,11 +43,15 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // 隐藏状态栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setViewOne();
         setViewTwo();
-        applyKitKatTranslucency();
+//        applyKitKatTranslucency();
     }
 
     private void setViewTwo() {
@@ -68,7 +72,7 @@ public class MainActivity extends Activity {
         chartDatas.add(new ChartView.ChartData(0.4f, "", "01/13"));
         chartDatas.add(new ChartView.ChartData(0.6f, "", "01/14"));
         chartDatas.add(new ChartView.ChartData(0.2f, "", "01/15"));
-        chartDatas.add(new ChartView.ChartData(1.0f, "", "01/16"));
+        chartDatas.add(new ChartView.ChartData(0.0f, "", "01/16"));
         chartDatas.add(new ChartView.ChartData(0.2f, "", "01/17"));
         chartDatas.add(new ChartView.ChartData(0.4f, "", "01/18"));
         chartDatas.add(new ChartView.ChartData(0.6f, "", "01/19"));

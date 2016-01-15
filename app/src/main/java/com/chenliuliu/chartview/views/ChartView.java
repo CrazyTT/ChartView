@@ -306,29 +306,6 @@ public class ChartView extends SurfaceView {
         return valueData;
     }
 
-    /*
-    // 加载更多数据
-    public void addData(List<ChartData> data) {
-        changeNewDataToAxes(data);
-    }
-
-    private void changeNewDataToAxes(List<ChartData> data) {
-        int yArea = height - topPadding - bottomPadding - xTextHeight - topTextHeight - 2 * pointSize;
-        int xWidth = width - leftPadding - rightPadding - yTextWidth;
-        spaceXLength = xWidth / xNum;
-        for (int i = data.size() - 1; i > 0; --i) {
-            float yValue = topPadding + topTextHeight + pointSize + (yArea * valueData.get(i).Y);
-            int xValue = axesData.get(0).X - spaceXLength;
-            ChartAxes axes = new ChartAxes(xValue, yValue, data.get(i).getDayCondition());
-            axes.setTopText(data.get(i).getTopText());
-            axes.setxText(data.get(i).getxText());
-            axesData.add(0, axes);
-        }
-        changeData();
-        refreshChart(0);
-    }
-*/
-
     /**
      * 触摸事件
      */
