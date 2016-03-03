@@ -1,28 +1,15 @@
 package com.chenliuliu.chartview.views;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.DashPathEffect;
-import android.graphics.Matrix;
-import android.graphics.Paint;
+import android.graphics.*;
 import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.hardware.SensorManager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.GestureDetector;
+import android.util.Log;
+import android.view.*;
 import android.view.GestureDetector.OnGestureListener;
-import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.view.View;
-import android.view.ViewConfiguration;
-
 import com.chenliuliu.chartview.bean.DayCondition;
 
 import java.util.ArrayList;
@@ -316,7 +303,7 @@ public class ChartView extends SurfaceView {
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            detector.onTouchEvent(event);
+            //detector.onTouchEvent(event);
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     startX = event.getX();
@@ -338,7 +325,7 @@ public class ChartView extends SurfaceView {
                             int minLimit = leftPadding + yTextWidth + POINT_PADDING;
                             if (min + transValue > minLimit) { // 滑动以后左边界判断
                                 if (min < minLimit) {
-                                    // transValue = minLimit - min;
+                                     transValue = minLimit - min;
                                     isEnable = true;
                                 } else {
                                     transValue = 0;
@@ -351,15 +338,18 @@ public class ChartView extends SurfaceView {
                             }
                             if (max + transValue < maxLimit) {// 滑动后右边界判断
                                 if (max > maxLimit) {
-                                    // transValue = maxLimit - max;
+                                     transValue = maxLimit - max;
                                     isEnable = true;
                                 } else {
                                     transValue = 0;
                                 }
                             } else {
-                                isEnable = true;
+                                isEnable = true
+                                ;
                             }
-
+                            Log.d("min", min + "");
+                            Log.d("minLimit", minLimit + "");
+                            Log.d("transValue", transValue + "");
                             if (isEnable) {
                                 startX = event.getX();
                                 refreshChart(transValue);
