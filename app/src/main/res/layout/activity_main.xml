@@ -1,70 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:test="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:clipToPadding="true"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical"
-    tools:context=".activitys.MainActivity">
-
-    <include layout="@layout/title_layout"/>
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="30dp"
-        android:background="@android:color/darker_gray"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:context=".activitys.MainActivity">
 
-        <com.chenliuliu.chartview.chart.CharterYLabels
-            android:id="@+id/charter_line_YLabel2"
-            android:layout_width="30dp"
-            android:layout_height="140dp"
-            android:layout_marginTop="30dp"
-            test:c_labelColor="#ef08f6"/>
+        <include layout="@layout/title_layout"/>
 
-        <HorizontalScrollView
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:scrollbars="none">
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:background="@android:color/darker_gray"
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <com.chenliuliu.chartview.chart.CharterYLabels
+                android:id="@+id/charter_line_YLabel2"
+                android:layout_width="30dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="30dp"
+                test:c_labelColor="#ef08f6"/>
+
+            <HorizontalScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:orientation="vertical"
-                >
+                android:layout_alignParentBottom="true"
+                android:scrollbars="none">
 
-                <com.chenliuliu.chartview.chart.CharterLine
-                    android:id="@+id/charter_line"
-                    android:layout_width="1200dip"
-                    android:layout_height="140dp"
-                    android:padding="5dip"
-                    test:c_chartFillColor="@color/blue"
-                    />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical"
+                    >
 
-                <com.chenliuliu.chartview.chart.CharterXLabels
-                    android:id="@+id/charter_line_XLabel"
-                    android:layout_width="1200dip"
-                    android:layout_height="20dp"
-                    test:c_labelColor="#ef08f6"/>
-            </LinearLayout>
-        </HorizontalScrollView>
+                    <com.chenliuliu.chartview.chart.CharterLine
+                        android:id="@+id/charter_line"
+                        android:layout_width="1200dip"
+                        android:layout_height="140dp"
+                        android:padding="5dip"
+                        test:c_chartFillColor="@color/blue"
+                        />
+
+                    <com.chenliuliu.chartview.chart.CharterXLabels
+                        android:id="@+id/charter_line_XLabel"
+                        android:layout_width="1200dip"
+                        android:layout_height="20dp"
+                        test:c_labelColor="#ef08f6"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+
+        <com.chenliuliu.chartview.views.ChartView
+            android:id="@+id/chartview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"/>
+
+
+        <com.chenliuliu.chartview.views.CanvasView
+            android:id="@+id/chartview2"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"/>
+
     </LinearLayout>
-
-
-    <com.chenliuliu.chartview.views.ChartView
-        android:id="@+id/chartview"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="30dp"/>
-</LinearLayout>
+</ScrollView>

@@ -14,11 +14,13 @@ import com.chenliuliu.chartview.R;
 import com.chenliuliu.chartview.chart.CharterLine;
 import com.chenliuliu.chartview.chart.CharterXLabels;
 import com.chenliuliu.chartview.chart.CharterYLabels;
+import com.chenliuliu.chartview.views.CanvasView;
 import com.chenliuliu.chartview.views.ChartView;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,6 +35,8 @@ public class MainActivity extends Activity {
     CharterXLabels mCharterLineXLabel;
     @Bind(R.id.chartview)
     ChartView chartView;
+    @Bind(R.id.chartview2)
+    CanvasView mChartview2;
 
     private String[] valuesY = new String[]{"优秀", "一般", "良好", "非常", "差劣", "超级"};
 
@@ -51,7 +55,24 @@ public class MainActivity extends Activity {
         ButterKnife.bind(this);
         setViewOne();
         setViewTwo();
+        setViewThree();
 //        applyKitKatTranslucency();
+    }
+
+    private void setViewThree() {
+        mChartview2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<Integer> one = new ArrayList<Integer>();
+                ArrayList<Integer> two = new ArrayList<Integer>();
+                for (int i = 0; i < 7; i++) {
+                    Random rand = new Random();
+                    one.add(rand.nextInt(4));
+                    two.add(rand.nextInt(4));
+                }
+                mChartview2.setData(one, two);
+            }
+        });
     }
 
     private void setViewTwo() {
