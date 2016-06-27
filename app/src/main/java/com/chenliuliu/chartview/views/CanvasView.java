@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PathEffect;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -67,12 +66,13 @@ public class CanvasView extends View {
         mPaintLineY.setStrokeWidth(3);
         mPaintLineY.setStyle(Paint.Style.FILL);
 
-        mPaintLineDefault = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaintLineDefault.setStyle(Paint.Style.STROKE);
+        mPaintLineDefault = new Paint();
         mPaintLineDefault.setColor(Color.GRAY);
+        mPaintLineDefault.setAntiAlias(true);
+        mPaintLineDefault.setStyle(Paint.Style.STROKE);
         mPaintLineDefault.setStrokeWidth(1);
-        PathEffect effects = new DashPathEffect(new float[]{5, 5, 5, 5}, 1);
-        mPaintLineDefault.setPathEffect(effects);
+        mPaintLineDefault.setPathEffect(new DashPathEffect(new float[]{10, 20}, 0));
+
 
         mPaintText = new Paint();
         mPaintText.setAntiAlias(true);
@@ -112,7 +112,12 @@ public class CanvasView extends View {
         canvas.drawPath(path2, mPaintLineX);
         //画虚线
         for (int i = 0; i < 5; i++) {
-            canvas.drawLine(50, poY[i], widthBg - 50, poY[i], mPaintLineDefault);
+
+            Path temp=new Path();
+            temp.moveTo(50,poY[i]);
+            temp.lineTo(widthBg - 50, poY[i]);
+            canvas.drawPath(temp, mPaintLineDefault);
+            //canvas.drawLine(50, poY[i], widthBg - 50, poY[i], mPaintLineDefault);
         }
         //画X标签
         for (int i = 0; i < pointCount; i++) {
