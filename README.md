@@ -9,6 +9,9 @@
 
 ![](https://github.com/CrazyTT/ChartView/blob/master/pic/44.gif?raw=true)
 
+![](https://github.com/CrazyTT/ChartView/blob/master/pic/7890.gif?raw=true)
+
+
 
 
 
