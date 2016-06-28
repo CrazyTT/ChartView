@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:test="http://schemas.android.com/apk/res-auto"
+    xmlns:chenliuliu="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +32,7 @@
                 android:layout_width="30dp"
                 android:layout_height="140dp"
                 android:layout_marginTop="30dp"
-                test:c_labelColor="#ef08f6"/>
+                chenliuliu:c_labelColor="#ef08f6"/>
 
             <HorizontalScrollView
                 android:layout_width="fill_parent"
@@ -51,14 +52,14 @@
                         android:layout_width="1200dip"
                         android:layout_height="140dp"
                         android:padding="5dip"
-                        test:c_chartFillColor="@color/blue"
+                        chenliuliu:c_chartFillColor="@color/blue"
                         />
 
                     <com.chenliuliu.chartview.chart.CharterXLabels
                         android:id="@+id/charter_line_XLabel"
                         android:layout_width="1200dip"
                         android:layout_height="20dp"
-                        test:c_labelColor="#ef08f6"/>
+                        chenliuliu:c_labelColor="#ef08f6"/>
                 </LinearLayout>
             </HorizontalScrollView>
         </LinearLayout>
@@ -72,11 +73,11 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"/>
 
-
         <com.chenliuliu.chartview.views.CanvasView
             android:id="@+id/chartview2"
             android:layout_width="match_parent"
-            android:layout_height="250dp"/>
-
+            android:layout_height="250dp"
+            chenliuliu:lineCount="8"
+            chenliuliu:pointCount="10"/>
     </LinearLayout>
 </ScrollView>

@@ -63,12 +63,14 @@ public class MainActivity extends Activity {
         mChartview2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mChartview2.setLineCount(9);
+                mChartview2.setPointCount(15);
                 ArrayList<Integer> one = new ArrayList<Integer>();
                 ArrayList<Integer> two = new ArrayList<Integer>();
-                for (int i = 0; i < 7; i++) {
+                for (int i = 0; i < 15; i++) {
                     Random rand = new Random();
-                    one.add(rand.nextInt(4));
-                    two.add(rand.nextInt(4));
+                    one.add(rand.nextInt(9));
+                    two.add(rand.nextInt(9));
                 }
                 mChartview2.setData(one, two);
             }

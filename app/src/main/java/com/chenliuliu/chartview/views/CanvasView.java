@@ -1,6 +1,7 @@
 package com.chenliuliu.chartview.views;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -8,6 +9,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.chenliuliu.chartview.R;
 
 import java.util.ArrayList;
 
@@ -18,13 +21,14 @@ import java.util.ArrayList;
 public class CanvasView extends View {
     int poY[];
     int poX[];
-    //背景的坐标
-    private int hi, wi, widthBg, heightBg;
+    int widthLeftRight = 50;//图标和左右变的距离
+    int widthTopBottom = 50;//图标和上下边的距离
+    private int widthBg, heightBg;//控件的总宽高
     private Paint mPaintLineOne, mPaintLineTwo, mPaintLineX, mPaintLineY, mPaintLineDefault, mPaintText, mPaintLineOneRound, mPaintLineTwoRound;
-    private int lineCount = 5;
-    private int pointCount = 7;
-    ArrayList<Integer> lineTwo = new ArrayList<>();
-    ArrayList<Integer> lineOne = new ArrayList<>();
+    private int lineCount = 6;//虚线条数
+    private int pointCount = 12;//总共点数
+    ArrayList<Integer> lineTwo = new ArrayList<>();//线条2的坐标
+    ArrayList<Integer> lineOne = new ArrayList<>();//线条1的坐标
 
 
     public CanvasView(Context context, AttributeSet set) {
@@ -33,6 +37,22 @@ public class CanvasView extends View {
 
     public CanvasView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.chenliuliuT, defStyleAttr, 0);
+        int n = array.getIndexCount();
+        for (int i = 0; i < n; i++) {
+            int attr = array.getIndex(i);
+            switch (attr) {
+                case R.styleable.chenliuliuT_lineCount:
+                    // 默认颜色设置为黑色
+                    lineCount = array.getInt(attr, 0);
+                    break;
+                case R.styleable.chenliuliuT_pointCount:
+                    pointCount = array.getInt(attr, 0);
+                    break;
+            }
+
+        }
+        array.recycle();
         init();
     }
 
@@ -95,65 +115,57 @@ public class CanvasView extends View {
         //把整张画布绘制成白色
         canvas.drawColor(Color.WHITE);
         //画Y轴
-        canvas.drawLine(50, heightBg - 50, 50, 50, mPaintLineY);
+        canvas.drawLine(widthLeftRight, heightBg - widthTopBottom, widthLeftRight, 25, mPaintLineY);
         Path path1 = new Path();
-        path1.moveTo(50, 0);
-        path1.lineTo(25, 50);
-        path1.lineTo(75, 50);
+        path1.moveTo(widthLeftRight, 0);
+        path1.lineTo(widthLeftRight - 15, 25);
+        path1.lineTo(widthLeftRight + 15, 25);
         path1.close();
         canvas.drawPath(path1, mPaintLineY);
         //画X轴
-        canvas.drawLine(50, heightBg - 50, widthBg - 50, heightBg - 50, mPaintLineX);
+        canvas.drawLine(widthLeftRight, heightBg - widthTopBottom, widthBg - 25, heightBg - widthTopBottom, mPaintLineX);
         Path path2 = new Path();
-        path2.moveTo(widthBg, heightBg - 50);
-        path2.lineTo(widthBg - 50, heightBg - 25);
-        path2.lineTo(widthBg - 50, heightBg - 75);
+        path2.moveTo(widthBg, heightBg - widthTopBottom);
+        path2.lineTo(widthBg - 25, heightBg - (widthTopBottom - 15));
+        path2.lineTo(widthBg - 25, heightBg - (widthTopBottom + 15));
         path2.close();
         canvas.drawPath(path2, mPaintLineX);
         //画虚线
-        for (int i = 0; i < 5; i++) {
-
-            Path temp=new Path();
-            temp.moveTo(50,poY[i]);
+        for (int i = 0; i < lineCount; i++) {
+            Path temp = new Path();
+            temp.moveTo(widthLeftRight, poY[i]);
             temp.lineTo(widthBg - 50, poY[i]);
             canvas.drawPath(temp, mPaintLineDefault);
-            //canvas.drawLine(50, poY[i], widthBg - 50, poY[i], mPaintLineDefault);
         }
         //画X标签
         for (int i = 0; i < pointCount; i++) {
-            canvas.drawText("tagX" + i, poX[i] - 10, heightBg - 15, mPaintText);
+            canvas.drawText("tagX" + i, poX[i] - 10, heightBg - (widthTopBottom - 35), mPaintText);
         }
         //画Y标签
         for (int i = 0; i < lineCount; i++) {
             canvas.drawText("tagY" + i, 10, poY[i], mPaintText);
         }
-
         Path pathLineone = new Path();
-        pathLineone.moveTo(100, 25);
-        pathLineone.lineTo(140, 25);
+        pathLineone.moveTo(widthLeftRight * 2, 30);
+        pathLineone.lineTo(widthLeftRight * 2 + 40, 30);
         canvas.drawPath(pathLineone, mPaintLineOne);
-        canvas.drawText("收入", 144, 35, mPaintText);
-
+        canvas.drawText("收入", widthLeftRight * 2 + 44, 35, mPaintText);
         Path pathLineTwo = new Path();
-        pathLineTwo.moveTo(180, 25);
-        pathLineTwo.lineTo(220, 25);
+        pathLineTwo.moveTo(widthLeftRight * 4, 30);
+        pathLineTwo.lineTo(widthLeftRight * 4 + 40, 30);
         canvas.drawPath(pathLineTwo, mPaintLineTwo);
-        canvas.drawText("支出", 224, 35, mPaintText);
+        canvas.drawText("支出", widthLeftRight * 4 + 44, 35, mPaintText);
 
         //画折线图1
-
-//        lineOne.add(poY[0]);
-//        lineOne.add(poY[0]);
-//        lineOne.add(poY[0]);
-//        lineOne.add(poY[0]);
-//        lineOne.add(poY[0]);
-//        lineOne.add(poY[0]);
-//        lineOne.add(poY[0]);
-
         Path path3 = new Path();
 
         for (int i = 0; i < pointCount; i++) {
-            if(lineOne.size()<=0){
+            //当数据不足时，停止绘制
+            if (i >= lineOne.size()) {
+                break;
+            }
+
+            if (lineOne.size() <= 0) {
                 break;
             }
             if (i == 0) {
@@ -165,16 +177,13 @@ public class CanvasView extends View {
         }
         canvas.drawPath(path3, mPaintLineOne);
         //画折线图2
-//        lineTwo.add(poY[4]);
-//        lineTwo.add(poY[4]);
-//        lineTwo.add(poY[4]);
-//        lineTwo.add(poY[4]);
-//        lineTwo.add(poY[4]);
-//        lineTwo.add(poY[4]);
-//        lineTwo.add(poY[4]);
         Path path4 = new Path();
         for (int i = 0; i < pointCount; i++) {
-            if(lineTwo.size()<=0){
+            //当数据不足时，停止绘制
+            if (i >= lineTwo.size()) {
+                break;
+            }
+            if (lineTwo.size() <= 0) {
                 break;
             }
             if (i == 0) {
@@ -212,15 +221,7 @@ public class CanvasView extends View {
         widthBg = width;
         heightBg = height;
         setMeasuredDimension(width, height);
-        int hightTemp = (heightBg - 100 - 40) / (lineCount - 1);
-        int hightOne = heightBg - 50 - 20;
-        int hightTwo = heightBg - 50 - 20 - hightTemp;
-        int hightThree = heightBg - 50 - 20 - hightTemp * 2;
-        int hightFour = heightBg - 50 - 20 - hightTemp * 3;
-        int hightFive = heightBg - 50 - 20 - hightTemp * 4;
-        poY = new int[]{hightOne, hightTwo, hightThree, hightFour, hightFive};
-        int widthTemp = (widthBg - 100 - 40) / (pointCount - 1);
-        poX = new int[]{50 + 20, 50 + 20 + widthTemp, 50 + 20 + widthTemp * 2, 50 + 20 + widthTemp * 3, 50 + 20 + widthTemp * 4, 50 + 20 + widthTemp * 5, 50 + 20 + widthTemp * 6};
+        initTemp();
     }
 
     public void setData(ArrayList<Integer> one, ArrayList<Integer> two) {
@@ -233,5 +234,52 @@ public class CanvasView extends View {
             this.lineTwo.add(poY[temp2]);
         }
         invalidate();
+    }
+
+    /**
+     * 设置虚线条数
+     *
+     * @param lineCount
+     */
+    public void setLineCount(int lineCount) {
+        this.lineCount = lineCount;
+        int hightTemp = (heightBg - widthTopBottom * 2 - 40) / (lineCount - 1);
+        poY = new int[lineCount];
+        for (int i = 0; i < lineCount; i++) {
+            poY[i] = heightBg - widthTopBottom - 20 - hightTemp * i;
+        }
+        invalidate();
+    }
+
+    /**
+     * 设置点的个数
+     *
+     * @param pointCount
+     */
+    public void setPointCount(int pointCount) {
+        this.pointCount = pointCount;
+        int widthTemp = (widthBg - widthLeftRight * 2 - 40) / (pointCount - 1);
+        poX = new int[pointCount];
+        for (int i = 0; i < pointCount; i++) {
+            poX[i] = widthLeftRight + 20 + widthTemp * i;
+        }
+        invalidate();
+    }
+
+
+    /**
+     * 初始化零时变量
+     */
+    public void initTemp() {
+        int hightTemp = (heightBg - widthTopBottom * 2 - 40) / (lineCount - 1);
+        poY = new int[lineCount];
+        for (int i = 0; i < lineCount; i++) {
+            poY[i] = heightBg - widthTopBottom - 20 - hightTemp * i;
+        }
+        int widthTemp = (widthBg - widthLeftRight * 2 - 40) / (pointCount - 1);
+        poX = new int[pointCount];
+        for (int i = 0; i < pointCount; i++) {
+            poX[i] = widthLeftRight + 20 + widthTemp * i;
+        }
     }
 }
