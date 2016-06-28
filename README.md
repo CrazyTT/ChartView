@@ -14,13 +14,14 @@
 
 
 第三个自定义折线图的使用方法
+```
 <com.chenliuliu.chartview.views.CanvasView
             android:id="@+id/chartview2"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             chenliuliu:lineCount="9"//设置虚线条数
             chenliuliu:pointCount="15"/>//设置点的个数
-
+```
 
 
 #License
